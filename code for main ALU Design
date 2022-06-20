@@ -1,0 +1,228 @@
+* SPICE export from S-Edit 12.50 Sun Nov 21 12:57:43 2021
+* Design:  ALU
+* Cell:    ALU
+* View:    view0
+* Export as: Top-level Cell
+* Netlist port order: default
+* Exclude .model : no
+* Exclude .end: no
+* Expand paths: yes
+* Root path: D:\3 - 1\ECE-390  (Workshop on analog design)\ALU
+* Exclude global pins on subcircuits: no
+* Export control property name: SPICE
+* Wrap lines: no (to 0 characters)
+
+********* Simulation Settings - General section *********
+
+*************** Subcircuits *****************
+.subckt NAND2 A B Out Gnd Vdd  
+MMOSFET_N_1 Out A N_1 N_1 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_1 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 Out A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 Out B Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt NAND3 A B C Out Gnd Vdd  
+MMOSFET_N_1 N_2 B N_1 N_1 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_1 C Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 Out A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_N_3 Out A N_2 N_2 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_2 Out B Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_3 Out C Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt NOT In Out Gnd Vdd  
+MMOSFET_N_1 Out In Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 Out In Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt XOR A B O Gnd Vdd  
+MMOSFET_N_5 N_4 N_2 Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_6 N_5 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 N_1 A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 N_2 B Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_3 N_3 N_1 Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_4 N_3 N_2 Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_5 O A N_3 N_3 PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_6 O B N_3 N_3 PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_N_1 N_1 A Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_2 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_3 O N_1 N_4 N_4 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_4 O A N_5 N_5 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+.ends
+
+.subckt 2x1 A0 A1 S Y Gnd Vdd  
+XNOT_1 S N_1 Gnd Vdd NOT  
+MMOSFET_N_1 A0 N_1 Y N_2 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 A1 S Y N_3 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 A0 S Y N_4 PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 A1 N_1 Y N_5 PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt AND A B O Gnd Vdd  
+XNOT_1 N_1 O Gnd Vdd NOT  
+MMOSFET_N_1 N_1 A N_2 N_2 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_2 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 N_1 A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 N_1 B Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt FS Bin Bout D X Y Gnd Vdd  
+XNAND2_1 Y X N_1 Gnd Vdd NAND2  
+XNAND2_2 N_1 X N_2 Gnd Vdd NAND2  
+XNAND2_3 Y N_1 N_3 Gnd Vdd NAND2  
+XNAND2_4 N_3 N_2 N_4 Gnd Vdd NAND2  
+XNAND2_5 Bin N_4 N_5 Gnd Vdd NAND2  
+XNAND2_6 N_5 N_4 N_6 Gnd Vdd NAND2  
+XNAND2_7 Bin N_5 N_7 Gnd Vdd NAND2  
+XNAND2_8 N_7 N_6 D Gnd Vdd NAND2  
+XNAND2_9 N_3 N_7 Bout Gnd Vdd NAND2  
+.ends
+
+.subckt MSJK CLK J K Q QDASH Gnd Vdd  
+XNOT_1 CLK N_5 Gnd Vdd NOT  
+XNAND2_1 N_3 N_1 N_4 Gnd Vdd NAND2  
+XNAND3_1 CLK J QDASH N_1 Gnd Vdd NAND3  
+XNAND2_2 N_2 N_4 N_3 Gnd Vdd NAND2  
+XNAND3_2 Q K CLK N_2 Gnd Vdd NAND3  
+XNAND2_3 N_5 N_4 N_6 Gnd Vdd NAND2  
+XNAND2_4 N_3 N_5 N_7 Gnd Vdd NAND2  
+XNAND2_5 QDASH N_6 Q Gnd Vdd NAND2  
+XNAND2_6 N_7 Q QDASH Gnd Vdd NAND2  
+.ends
+
+.subckt OR A B O Gnd Vdd  
+XNOT_1 N_2 O Gnd Vdd NOT  
+MMOSFET_N_1 N_2 A Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_2 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 N_1 A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 N_2 B N_1 N_1 PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt 2bitOR A0 A1 B0 B1 O0 O1 Gnd Vdd  
+XOR_1 A1 B1 O1 Gnd Vdd OR  
+XOR_2 A0 B0 O0 Gnd Vdd OR  
+.ends
+
+.subckt 4X1 A0 A1 A2 A3 S0 S1 Y Gnd Vdd  
+X2x1_1 A0 A1 S1 N_1 Gnd Vdd 2x1  
+X2x1_2 A2 A3 S1 N_2 Gnd Vdd 2x1  
+X2x1_3 N_1 N_2 S0 Y Gnd Vdd 2x1  
+.ends
+
+.subckt B2AND A0 A1 B0 B1 O0 O1 Gnd Vdd  
+XAND_1 A1 B1 O1 Gnd Vdd AND  
+XAND_2 A0 B0 O0 Gnd Vdd AND  
+.ends
+
+.subckt B2DIV A0 A1 B0 B1 Q0 Q1 Gnd Vdd  
+XNOT_1 B1 N_1 Gnd Vdd NOT  
+XNOT_3 B0 N_4 Gnd Vdd NOT  
+XNOT_4 A1 N_7 Gnd Vdd NOT  
+XOR_1 N_5 N_3 N_9 Gnd Vdd OR  
+XOR_2 N_8 N_9 Q0 Gnd Vdd OR  
+XAND_1 A1 N_1 N_2 Gnd Vdd AND  
+XAND_2 A1 A0 N_3 Gnd Vdd AND  
+XAND_3 A1 N_4 N_5 Gnd Vdd AND  
+XAND_4 A0 N_1 N_6 Gnd Vdd AND  
+XAND_5 N_7 N_6 N_8 Gnd Vdd AND  
+XAND_6 N_2 B0 Q1 Gnd Vdd AND  
+.ends
+
+.subckt DET CLK D Q QBAR Gnd Vdd  
+XNOT_1 D N_1 Gnd Vdd NOT  
+XMSJK_1 CLK D N_1 Q QBAR Gnd Vdd MSJK  
+.ends
+
+.subckt FA A B CIN COUT S Gnd Vdd  
+XOR_1 N_3 N_2 COUT Gnd Vdd OR  
+XAND_1 CIN N_1 N_2 Gnd Vdd AND  
+XAND_2 A B N_3 Gnd Vdd AND  
+XXOR_1 B A N_1 Gnd Vdd XOR  
+XXOR_2 CIN N_1 S Gnd Vdd XOR  
+.ends
+
+.subckt HA A B C S Gnd Vdd  
+XAND_1 A B C Gnd Vdd AND  
+XXOR_1 A B S Gnd Vdd XOR  
+.ends
+
+.subckt HS A B Bo D Gnd Vdd  
+XNOT_1 A N_1 Gnd Vdd NOT  
+XAND_1 N_1 B Bo Gnd Vdd AND  
+XXOR_1 A B D Gnd Vdd XOR  
+.ends
+
+.subckt 2bitLS A CLK Q0 Q1 Gnd Vdd  
+XDET_1 CLK Q0 Q1 N_1 Gnd Vdd DET  
+XDET_2 CLK A Q0 N_2 Gnd Vdd DET  
+.ends
+
+.subckt 2bitRS A CLK Q0 Q1 Gnd Vdd  
+XDET_1 CLK A Q1 N_1 Gnd Vdd DET  
+XDET_2 CLK Q1 Q0 N_2 Gnd Vdd DET  
+.ends
+
+.subckt 8X1 A0 A1 A2 A3 A4 A5 A6 A7 S0 S1 S3 Y Gnd Vdd  
+X4X1_1 A0 A1 A2 A3 S1 S0 N_1 Gnd Vdd 4X1  
+X2x1_1 N_1 N_2 S3 Y Gnd Vdd 2x1  
+X4X1_2 A4 A5 A6 A7 S1 S0 N_2 Gnd Vdd 4X1  
+.ends
+
+.subckt B2ADD A0 A1 B0 B1 S0 S1 S2 Gnd Vdd  
+XFA_1 A1 B1 N_1 S2 S1 Gnd Vdd FA  
+XHA_1 A0 B0 N_1 S0 Gnd Vdd HA  
+.ends
+
+.subckt B2MUL A0 A1 B0 B1 O0 O1 O2 O3 Gnd Vdd  
+XAND_1 A0 B0 O0 Gnd Vdd AND  
+XAND_2 A1 B0 N_1 Gnd Vdd AND  
+XAND_3 A0 B1 N_2 Gnd Vdd AND  
+XAND_4 A1 B1 N_3 Gnd Vdd AND  
+XHA_1 N_1 N_2 N_4 O1 Gnd Vdd HA  
+XHA_2 N_3 N_4 O3 O2 Gnd Vdd HA  
+.ends
+
+.subckt B2SUB A0 A1 B0 B1 D0 D1 D2 Gnd Vdd  
+XFS_1 N_1 D2 D1 A1 B1 Gnd Vdd FS  
+XHS_1 A0 B0 N_1 D0 Gnd Vdd HS  
+.ends
+
+
+********* Simulation Settings - Parameters and SPICE Options *********
+
+X2bitOR_1 A0 A1 B0 B1 N_2 N_1 Gnd Vdd 2bitOR  
+XB2MUL_1 A0 A1 B0 B1 N_10 N_11 N_12 N_16 Gnd Vdd B2MUL  
+X2bitLS_1 A1 CLK N_9 N_19 Gnd Vdd 2bitLS  
+XB2AND_1 A0 A1 B0 B1 N_7 N_17 Gnd Vdd B2AND  
+X8X1_1 N_3 N_14 N_10 N_6 N_7 N_2 N_8 N_9 S0 S1 S2 Q0 Gnd Vdd 8X1  
+X8X1_2 N_4 N_15 N_11 N_13 N_17 N_1 N_18 N_19 S0 S1 S2 Q1 Gnd Vdd 8X1  
+X4X1_1 N_5 N_20 N_12 Gnd S1 S0 Q2 Gnd Vdd 4X1  
+XB2SUB_1 A0 A1 B0 B1 N_14 N_15 N_20 Gnd Vdd B2SUB  
+XB2DIV_1 A0 A1 B0 B1 N_6 N_13 Gnd Vdd B2DIV  
+X2bitRS_1 A1 CLK N_8 N_18 Gnd Vdd 2bitRS  
+XB2ADD_1 A0 A1 B0 B1 N_3 N_4 N_5 Gnd Vdd B2ADD  
+
+********* Simulation Settings - Analysis section *********
+.Model NMOS NMOS(Vto=0.8V Kp=45u Lambda=0.01 Gamma=0.4 phi=0.6)
+.Model PMOS PMOS (Vto=-0.9V Kp=33u Lambda=0.02 Gamma=0.4 phi=0.6)
+
+Vdd Vdd Gnd 5V
+Vin1 A1 Gnd 5V
+Vin2 A0 Gnd 5V
+Vin3 B1 Gnd 5V
+Vin4 B0 Gnd 0
+
+Vin8 CLK Gnd pulse(0 5v 0 1n 1n 5n 10n)
+
+Vin5 S2 Gnd pulse(0 5v 0 1n 1n 50n 100n)
+Vin6 S1 Gnd pulse(0 5v 0 1n 1n 25n 60n)
+Vin7 S0 Gnd pulse(0 5v 0 1n 1n 12.2n 33n)
+
+.Tran 1ns 200ns
+
+.print V(Q0) V(Q1) V(Q2) V(S0) V(S1) V(S2)
+********* Simulation Settings - Additional SPICE commands *********
+
+.end
+
