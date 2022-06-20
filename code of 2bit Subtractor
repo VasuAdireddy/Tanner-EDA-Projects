@@ -1,0 +1,91 @@
+* SPICE export from S-Edit 12.50 Sun Nov 14 11:53:08 2021
+* Design:  2bitSUB
+* Cell:    B2SUB
+* View:    view0
+* Export as: Top-level Cell
+* Netlist port order: default
+* Exclude .model : no
+* Exclude .end: no
+* Expand paths: yes
+* Root path: D:\3 - 1\ECE-390  (Workshop on analog design)\2bitSUB
+* Exclude global pins on subcircuits: no
+* Export control property name: SPICE
+* Wrap lines: no (to 0 characters)
+
+********* Simulation Settings - General section *********
+
+*************** Subcircuits *****************
+.subckt NAND2 A B Out Gnd Vdd  
+MMOSFET_N_1 Out A N_1 N_1 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_1 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 Out A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 Out B Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt NOT In Out Gnd Vdd  
+MMOSFET_N_1 Out In Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 Out In Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt XOR A B O Gnd Vdd  
+MMOSFET_N_5 N_4 N_2 Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_6 N_5 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 N_1 A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 N_2 B Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_3 N_3 N_1 Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_4 N_3 N_2 Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_5 O A N_3 N_3 PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_6 O B N_3 N_3 PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_N_1 N_1 A Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_2 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_3 O N_1 N_4 N_4 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_4 O A N_5 N_5 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+.ends
+
+.subckt AND A B O Gnd Vdd  
+XNOT_1 N_1 O Gnd Vdd NOT  
+MMOSFET_N_1 N_1 A N_2 N_2 NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_N_2 N_2 B Gnd Gnd NMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u 
+MMOSFET_P_1 N_1 A Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+MMOSFET_P_2 N_1 B Vdd Vdd PMOS L=2u W=22u AD=66p PD=24u AS=66p PS=24u
+.ends
+
+.subckt FS Bin Bout D X Y Gnd Vdd  
+XNAND2_1 Y X N_1 Gnd Vdd NAND2  
+XNAND2_2 N_1 X N_2 Gnd Vdd NAND2  
+XNAND2_3 Y N_1 N_3 Gnd Vdd NAND2  
+XNAND2_4 N_3 N_2 N_4 Gnd Vdd NAND2  
+XNAND2_5 Bin N_4 N_5 Gnd Vdd NAND2  
+XNAND2_6 N_5 N_4 N_6 Gnd Vdd NAND2  
+XNAND2_7 Bin N_5 N_7 Gnd Vdd NAND2  
+XNAND2_8 N_7 N_6 D Gnd Vdd NAND2  
+XNAND2_9 N_3 N_7 Bout Gnd Vdd NAND2  
+.ends
+
+.subckt HS A B Bo D Gnd Vdd  
+XNOT_1 A N_1 Gnd Vdd NOT  
+XAND_1 N_1 B Bo Gnd Vdd AND  
+XXOR_1 A B D Gnd Vdd XOR  
+.ends
+
+
+********* Simulation Settings - Parameters and SPICE Options *********
+
+XFS_1 N_1 D2 D1 A1 B1 Gnd Vdd FS  
+XHS_1 A0 B0 N_1 D0 Gnd Vdd HS  
+
+********* Simulation Settings - Analysis section *********
+.Model NMOS NMOS(Vto=0.8V Kp=45u Lambda=0.01 Gamma=0.4 phi=0.6)
+.Model PMOS PMOS (Vto=-0.9V Kp=33u Lambda=0.02 Gamma=0.4 phi=0.6)
+Vdd Vdd Gnd 5V
+Vin1 A0 Gnd pulse(0 5v 0 1n 1n 50n 100n)
+Vin2 B0 Gnd pulse(0 5v 0 1n 1n 38n 80n)
+Vin3 A1 Gnd pulse(0 5v 0 1n 1n 30n 65n)
+Vin4 B1 Gnd pulse(0 5v 0 1n 1n 30n 65n)
+.Tran 1ns 100ns
+**.power Vdd A 10000ns
+.print V(A1) V(A0) V(B1) V(B0) V(D2) V(D1) V(D0)
+********* Simulation Settings - Additional SPICE commands *********
+
+.end
+
